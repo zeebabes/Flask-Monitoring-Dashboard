@@ -10,17 +10,20 @@
           - nginx
         state: present
 
-    - name: Ensure pip is installed
-      shell: |
-        python3 -m ensurepip --upgrade
-      args:
-        executable: /bin/bash
+    - name: Download get-pip.py
+      get_url:
+        url: https://bootstrap.pypa.io/get-pip.py
+        dest: /home/ec2-user/get-pip.py
+
+    - name: Install pip using get-pip.py
+      command: python3 /home/ec2-user/get-pip.py
 
     - name: Install Python packages
       pip:
         name:
           - flask
           - gunicorn
+        executable: /usr/local/bin/pip3
 
     - name: Copy app files
       copy:
