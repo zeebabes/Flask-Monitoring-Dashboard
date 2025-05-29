@@ -10,9 +10,9 @@
           - nginx
         state: present
 
-    - name: Download get-pip.py
+    - name: Download get-pip.py for Python 3.7
       get_url:
-        url: https://bootstrap.pypa.io/get-pip.py
+        url: https://bootstrap.pypa.io/pip/3.7/get-pip.py
         dest: /home/ec2-user/get-pip.py
 
     - name: Install pip using get-pip.py
@@ -73,5 +73,3 @@
 
     - name: Restart Nginx
       service:
-        name: nginx
-        state: restarted
