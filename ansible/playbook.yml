@@ -6,24 +6,18 @@
       yum:
         name:
           - python3
-          - python3-pip
           - nginx
         state: present
 
-    - name: Download get-pip.py for Python 3.7
-      get_url:
-        url: https://bootstrap.pypa.io/pip/3.7/get-pip.py
-        dest: /home/ec2-user/get-pip.py
-
-    - name: Install pip using get-pip.py
-      command: python3 /home/ec2-user/get-pip.py
+    - name: Install pip3 using yum
+      command: yum install -y python3-pip
 
     - name: Install Python packages
       pip:
         name:
           - flask
           - gunicorn
-        executable: /usr/local/bin/pip3
+        executable: /usr/bin/pip3
 
     - name: Copy app files
       copy:
@@ -73,3 +67,5 @@
 
     - name: Restart Nginx
       service:
+        name: nginx
+        state: restarted
