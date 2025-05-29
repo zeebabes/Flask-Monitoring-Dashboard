@@ -10,6 +10,12 @@
           - nginx
         state: present
 
+    - name: Ensure pip is installed
+      shell: |
+        python3 -m ensurepip --upgrade
+      args:
+        executable: /bin/bash
+
     - name: Install Python packages
       pip:
         name:
