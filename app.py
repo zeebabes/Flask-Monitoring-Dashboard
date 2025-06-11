@@ -98,7 +98,7 @@ def dashboard():
             </div>
         </div>
         <footer>
-            &copy; 2024 ZEETECH Monitoring Dashboard. All rights reserved.
+            &copy; 2025 ZEETECH Monitoring Dashboard. All rights reserved.
         </footer>
     </body>
     </html>
