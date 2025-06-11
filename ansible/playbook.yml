@@ -10,15 +10,12 @@
           - nginx
         state: present
 
-    - name: Install pip3 using yum
-      command: yum install -y python3-pip
-
     - name: Install Python packages
       pip:
         name:
           - flask
           - gunicorn
-        executable: /usr/local/bin/pip3
+        executable: pip3
 
     - name: Copy app files
       copy:
@@ -40,7 +37,7 @@
           [Service]
           User=ec2-user
           WorkingDirectory=/home/ec2-user
-          ExecStart=/usr/local/bin/gunicorn -c gunicorn_config.py app:app
+          ExecStart=/usr/bin/gunicorn -c gunicorn_config.py app:app
 
           [Install]
           WantedBy=multi-user.target
