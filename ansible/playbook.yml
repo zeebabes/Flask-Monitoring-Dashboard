@@ -18,6 +18,7 @@
         name:
           - flask
           - gunicorn
+          - psutil
         executable: /usr/local/bin/pip3
 
     - name: Copy app files
