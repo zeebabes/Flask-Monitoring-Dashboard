@@ -2,6 +2,9 @@
   hosts: web
   become: yes
   tasks:
+    - name: Enable Amazon Linux extras for nginx
+      command: amazon-linux-extras enable nginx1
+
     - name: Install dependencies
       yum:
         name:
