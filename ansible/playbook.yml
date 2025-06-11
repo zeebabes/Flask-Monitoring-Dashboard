@@ -13,14 +13,6 @@
     - name: Install pip3 using yum
       command: yum install -y python3-pip
 
-    - name: Install Python packages
-      pip:
-        name:
-          - flask
-          - gunicorn
-          - psutil
-        executable: /usr/local/bin/pip3
-
     - name: Copy app files
       copy:
         src: "{{ item }}"
@@ -29,6 +21,11 @@
         - ../app.py
         - ../requirements.txt
         - ../gunicorn_config.py
+
+    - name: Install Python packages from requirements.txt
+      pip:
+        requirements: /home/ec2-user/requirements.txt
+        executable: /usr/local/bin/pip3
 
     - name: Create Gunicorn systemd service
       copy:
