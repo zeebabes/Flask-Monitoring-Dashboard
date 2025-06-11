@@ -27,21 +27,24 @@ def dashboard():
             <style>
                 body {{
                     font-family: Arial;
-                    background: #fefefe;
+                    background: url("/static/zeetech-bg.png") no-repeat center center fixed;
+                    background-size: cover;
+                    color: #264653;
                     text-align: center;
                     margin-top: 50px;
                 }}
                 h1 {{
-                    color: #2a9d8f;
+                    color: #ffffff;
+                    text-shadow: 1px 1px 2px #000;
                 }}
                 p {{
                     font-size: 18px;
-                    color: #264653;
+                    color: #ffffff;
+                    text-shadow: 1px 1px 2px #000;
                 }}
             </style>
         </head>
         <body>
-            <img src="/static/Zeetech.png" alt="ZEETECH Logo" width="100"><br>
             <h1>ZEETECH Monitoring Dashboard</h1>
             <p><strong>CPU Usage:</strong> {cpu}%</p>
             <p><strong>Memory Usage:</strong> {memory.percent}% of {format_bytes(memory.total)}</p>
