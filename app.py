@@ -1,3 +1,4 @@
+
 from flask import Flask
 import psutil
 import os
@@ -22,34 +23,88 @@ def dashboard():
 
     return f'''
     <html>
-        <head>
-            <title>ZEETECH Monitoring Dashboard</title>
-            <style>
-                body {{
-                    font-family: Arial;
-                    background: #fefefe;
-                    text-align: center;
-                    margin-top: 50px;
-                }}
-                h1 {{
-                    color: #2a9d8f;
-                }}
-                p {{
-                    font-size: 18px;
-                    color: #264653;
-                }}
-            </style>
-        </head>
-        <body>
-            <img src="/static/zeetech-logo.png" alt="ZEETECH Logo" width="100"><br>
-            <h1>ZEETECH Monitoring Dashboard</h1>
-            <p><strong>CPU Usage:</strong> {cpu}%</p>
-            <p><strong>Memory Usage:</strong> {memory.percent}% of {format_bytes(memory.total)}</p>
-            <p><strong>Disk Usage:</strong> {disk.percent}% of {format_bytes(disk.total)}</p>
-            <p><strong>System Load (1/5/15 min):</strong> {load[0]}, {load[1]}, {load[2]}</p>
-            <p><strong>Uptime:</strong> {uptime // 3600:.0f}h {(uptime % 3600) // 60:.0f}m</p>
-            <p><strong>Network Sent:</strong> {format_bytes(net.bytes_sent)} | <strong>Received:</strong> {format_bytes(net.bytes_recv)}</p>
-        </body>
+    <head>
+        <title>ZEETECH Monitoring Dashboard</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            body {{
+                font-family: 'Poppins', sans-serif;
+                background: url("/static/zeetech-bg.png") no-repeat center center fixed;
+                background-size: cover;
+                color: #264653;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+            }}
+            h1 {{
+                color: #ffffff;
+                text-shadow: 1px 1px 2px #000;
+                margin-top: 40px;
+            }}
+            .container {{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                padding: 20px;
+            }}
+            .card {{
+                background: rgba(255, 255, 255, 0.85);
+                border-radius: 12px;
+                padding: 20px;
+                width: 250px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }}
+            .card i {{
+                font-size: 24px;
+                margin-bottom: 10px;
+                color: #2a9d8f;
+            }}
+            footer {{
+                margin: 30px auto;
+                font-size: 12px;
+                color: #ccc;
+            }}
+            .dark {{
+                background: #121212 !important;
+                color: #eee !important;
+            }}
+        </style>
+    </head>
+    <body>
+        <h1>ZEETECH Monitoring Dashboard</h1>
+        <button onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
+        <div class="container">
+            <div class="card">
+                <i class="fas fa-microchip"></i>
+                <p><strong>CPU Usage:</strong><br>{cpu}%</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-memory"></i>
+                <p><strong>Memory Usage:</strong><br>{memory.percent}% of {format_bytes(memory.total)}</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-hdd"></i>
+                <p><strong>Disk Usage:</strong><br>{disk.percent}% of {format_bytes(disk.total)}</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-tachometer-alt"></i>
+                <p><strong>System Load:</strong><br>{load[0]}, {load[1]}, {load[2]}</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-clock"></i>
+                <p><strong>Uptime:</strong><br>{uptime // 3600:.0f}h {(uptime % 3600) // 60:.0f}m</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-network-wired"></i>
+                <p><strong>Network:</strong><br>Sent: {format_bytes(net.bytes_sent)}<br>Recv: {format_bytes(net.bytes_recv)}</p>
+            </div>
+        </div>
+        <footer>
+            &copy; 2024 ZEETECH Monitoring Dashboard. All rights reserved.
+        </footer>
+    </body>
     </html>
     '''
 
