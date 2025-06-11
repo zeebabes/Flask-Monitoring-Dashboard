@@ -30,17 +30,13 @@ def dashboard():
         <style>
             body {{
                 font-family: 'Poppins', sans-serif;
-                background: url("/static/zeetech-bg.png") no-repeat center center fixed;
+                background: url("/static/zeetech-bg.png") no-repeat center top fixed;
                 background-size: cover;
+                background-position-y: 120px;
                 color: #264653;
                 text-align: center;
                 margin: 0;
                 padding: 0;
-            }}
-            h1 {{
-                color: #ffffff;
-                text-shadow: 1px 1px 2px #000;
-                margin-top: 40px;
             }}
             .container {{
                 display: flex;
@@ -48,6 +44,7 @@ def dashboard():
                 justify-content: center;
                 gap: 20px;
                 padding: 20px;
+                margin-top: 140px;
             }}
             .card {{
                 background: rgba(255, 255, 255, 0.85);
@@ -67,13 +64,12 @@ def dashboard():
                 color: #ccc;
             }}
             .dark {{
-                background: #121212 !important;
+                background-color: #121212 !important;
                 color: #eee !important;
             }}
         </style>
     </head>
     <body>
-        <h1>ZEETECH Monitoring Dashboard</h1>
         <button onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
         <div class="container">
             <div class="card">
