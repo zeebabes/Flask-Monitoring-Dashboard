@@ -41,7 +41,7 @@ def dashboard():
             </style>
         </head>
         <body>
-            <img src="/static/Zeetech-logo.png" alt="ZEETECH Logo" width="100"><br>
+            <img src="/static/Zeetech.png" alt="ZEETECH Logo" width="100"><br>
             <h1>ZEETECH Monitoring Dashboard</h1>
             <p><strong>CPU Usage:</strong> {cpu}%</p>
             <p><strong>Memory Usage:</strong> {memory.percent}% of {format_bytes(memory.total)}</p>
