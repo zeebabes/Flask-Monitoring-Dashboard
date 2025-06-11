@@ -25,6 +25,12 @@
         - ../requirements.txt
         - ../gunicorn_config.py
 
+    - name: Copy static files
+      copy:
+        src: ../static/
+        dest: /home/ec2-user/static/
+        mode: preserve
+
     - name: Install Python packages from requirements.txt
       pip:
         requirements: /home/ec2-user/requirements.txt
@@ -64,6 +70,10 @@
                   proxy_pass http://localhost:8000;
                   proxy_set_header Host $host;
                   proxy_set_header X-Real-IP $remote_addr;
+              }
+
+              location /static/ {
+                  alias /home/ec2-user/static/;
               }
           }
 

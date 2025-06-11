@@ -23,15 +23,26 @@ def dashboard():
     return f'''
     <html>
         <head>
-            <title>CEEYIT Monitoring Dashboard</title>
+            <title>ZEETECH Monitoring Dashboard</title>
             <style>
-                body {{ font-family: Arial; background: #fefefe; text-align: center; margin-top: 50px; }}
-                h1 {{ color: #2a9d8f; }}
-                p {{ font-size: 18px; color: #264653; }}
+                body {{
+                    font-family: Arial;
+                    background: #fefefe;
+                    text-align: center;
+                    margin-top: 50px;
+                }}
+                h1 {{
+                    color: #2a9d8f;
+                }}
+                p {{
+                    font-size: 18px;
+                    color: #264653;
+                }}
             </style>
         </head>
         <body>
-            <h1>CEEYIT Monitoring Dashboard</h1>
+            <img src="/static/zeetech-logo.png" alt="ZEETECH Logo" width="100"><br>
+            <h1>ZEETECH Monitoring Dashboard</h1>
             <p><strong>CPU Usage:</strong> {cpu}%</p>
             <p><strong>Memory Usage:</strong> {memory.percent}% of {format_bytes(memory.total)}</p>
             <p><strong>Disk Usage:</strong> {disk.percent}% of {format_bytes(disk.total)}</p>
