@@ -34,7 +34,7 @@
     - name: Install Python packages from requirements.txt
       pip:
         requirements: /home/ec2-user/requirements.txt
-        executable: /usr/bin/pip3
+        executable: /usr/local/bin/pip3
 
     - name: Create Gunicorn systemd service
       copy:
