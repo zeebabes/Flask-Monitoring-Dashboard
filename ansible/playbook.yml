@@ -58,13 +58,13 @@
         enabled: yes
         state: started
 
-    - name: Configure Nginx
+    - name: Configure Nginx with SSL placeholder
       copy:
         dest: /etc/nginx/conf.d/flaskapp.conf
         content: |
           server {
               listen 80;
-              server_name _;
+              server_name zeetech.click;
 
               location / {
                   proxy_pass http://localhost:8000;
@@ -81,3 +81,21 @@
       service:
         name: nginx
         state: restarted
+
+    - name: Check if certbot is already installed
+      command: which certbot
+      register: certbot_check
+      ignore_errors: yes
+
+    - name: Install Certbot only if not present
+      pip:
+        name: certbot
+        executable: pip3
+      when: certbot_check.rc != 0
+
+    - name: Enable HTTPS and redirect HTTP to HTTPS with Certbot
+      command: >
+        certbot --nginx -d zeetech.click --agree-tos
+        -m kzagbabiaka@gmail.com --redirect --non-interactive
+      register: certbot_result
+      changed_when: "'Congratulations' in certbot_result.stdout or 'Certificate not yet due for renewal' in certbot_result.stdout"
